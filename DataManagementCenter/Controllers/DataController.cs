@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DataManagementCenter.Models;
+using Nota.DataManagement.Model;
+using Nota.DataManagement.Data;
 
 namespace DataManagementCenter.Controllers
 {
@@ -20,7 +21,7 @@ namespace DataManagementCenter.Controllers
          * PUT {loan}/{id} - update 
          * DELETE {loan}/{id} - delete
          */
-        static readonly IDataRepository repository = new LoanRepository();
+        static readonly IDataRepository<Loan> repository = RepositoryFactory.Create<Loan>();
 
         
         public IEnumerable<Loan> GetAll()

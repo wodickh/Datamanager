@@ -58,6 +58,14 @@
       <Project>{bdd05941-03f2-4a27-a0c3-9443994b9f71}</Project>
       <Name>DataManagementCenter</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nota.DataManagement.Data\Nota.DataManagement.Data.csproj">
+      <Project>{619f752f-17ab-4755-8678-5fd1acc3a749}</Project>
+      <Name>Nota.DataManagement.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nota.DataManagement.Model\Nota.DataManagement.Model.csproj">
+      <Project>{561382a0-9db2-420a-80c0-8622333da61a}</Project>
+      <Name>Nota.DataManagement.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

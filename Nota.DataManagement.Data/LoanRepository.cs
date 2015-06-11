@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Nota.DataManagement.Model;
 
-namespace DataManagementCenter.Models
+namespace Nota.DataManagement.Data
 {
-    public class LoanRepository : IDataRepository
+    public class LoanRepository : ILoanRepository
     {
      //   private List<Loan> datas = new List<Loan>();
         private static ConcurrentDictionary<int, Loan> datas = new ConcurrentDictionary<int, Loan>();

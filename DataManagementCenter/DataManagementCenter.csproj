@@ -82,10 +82,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaseData.cs" />
-    <Compile Include="Models\DataRepository.cs" />
-    <Compile Include="Models\IDataRepository.cs" />
-    <Compile Include="Models\Loan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +95,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nota.DataManagement.Data\Nota.DataManagement.Data.csproj">
+      <Project>{619f752f-17ab-4755-8678-5fd1acc3a749}</Project>
+      <Name>Nota.DataManagement.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nota.DataManagement.Model\Nota.DataManagement.Model.csproj">
+      <Project>{561382a0-9db2-420a-80c0-8622333da61a}</Project>
+      <Name>Nota.DataManagement.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

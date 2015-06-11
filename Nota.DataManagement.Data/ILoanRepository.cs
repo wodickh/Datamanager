@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nota.DataManagement.Model;
 
-namespace DataManagementCenter.Models
+namespace Nota.DataManagement.Data
 {
-    public interface IDataRepository
+    public interface ILoanRepository
     {
         IEnumerable<Loan> GetAll();
         Loan Get(int id);

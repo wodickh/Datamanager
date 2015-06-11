@@ -2,7 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataManagementCenter.Models;
+using Nota.DataManagement.Data;
+using Nota.DataManagement.Model;
 
 namespace DataManagementCenterTest
 {
@@ -13,7 +14,7 @@ namespace DataManagementCenterTest
         [TestMethod]
         public void TestReadNWriteAsync()
         {
-            LoanRepository repo = new LoanRepository();
+            IDataRepository<Loan> repo = RepositoryFactory.Create<Loan>();
             Task[] tasks = new Task[2];
             tasks[0] = Task.Run(() =>
             {
@@ -33,7 +34,7 @@ namespace DataManagementCenterTest
                 }
             });
             Task.WaitAll(tasks);
-            Assert.IsTrue(repo.Count>0);
+            Assert.IsTrue(repo.Count() > 0);
         }
 
         [TestMethod]
