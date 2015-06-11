@@ -13,5 +13,6 @@ namespace DataManagementCenter.Models
         Loan Add(Loan data);
         void Remove(Loan data);
         bool Update(Loan data);
+        int GetLastestRevision();
     }
 }
