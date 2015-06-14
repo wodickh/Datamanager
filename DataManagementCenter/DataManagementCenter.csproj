@@ -102,6 +102,10 @@
       <Project>{619f752f-17ab-4755-8678-5fd1acc3a749}</Project>
       <Name>Nota.DataManagement.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nota.DataManagement.Infrastructure\Nota.DataManagement.Infrastructure.csproj">
+      <Project>{9c5fcf35-af61-4c3a-ad27-c114e683c7ff}</Project>
+      <Name>Nota.DataManagement.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nota.DataManagement.Model\Nota.DataManagement.Model.csproj">
       <Project>{561382a0-9db2-420a-80c0-8622333da61a}</Project>
       <Name>Nota.DataManagement.Model</Name>

@@ -38,12 +38,15 @@ namespace DataManagementCenter.Controllers
             return loan;
         }
 
-        public IEnumerable<Loan> GetByRevision(string revision)
+        public HttpResponseMessage GetByRevision(string revision)
         {
             int id;
             if (int.TryParse(revision, out id))
             {
-                return repository.GetAll().Where(l => l.Revision > int.Parse(revision));
+                IEnumerable<Loan> loans = repository.GetAll().Where(l => l.Revision > int.Parse(revision));
+                  HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.OK, loans);
+                  message.Headers.Add("revision", repository.GetLastestRevision().ToString());
+                  return message;
             }
             else
             {
@@ -53,9 +56,13 @@ namespace DataManagementCenter.Controllers
 
         public HttpResponseMessage Head(string revision)
         {
-            HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.OK);
-            message.Headers.Add("revision", repository.GetLastestRevision().ToString());
+            if (repository.GetLastestRevision() !=0) {
+                HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.OK);
+             message.Headers.Add("revision", repository.GetLastestRevision().ToString());
             return message;
+            } else {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }            
         }
         
         public HttpResponseMessage Post(Loan loan)
@@ -87,8 +94,10 @@ namespace DataManagementCenter.Controllers
         }
     }
 
+    #region Controllers
     public class LoanController : DataController
     {
         
     }
+#endregion Controllers
 }

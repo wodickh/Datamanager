@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nota.DataManagement.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,7 @@ namespace DataManagementCenter
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            DataInitialiser.Initialize();
         }
     }
 }
