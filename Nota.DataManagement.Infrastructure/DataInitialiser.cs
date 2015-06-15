@@ -14,8 +14,9 @@ namespace Nota.DataManagement.Infrastructure
         {
             // Deserialize all data that is serialised 
             // e.g. Loans
-            DataRepositoryHelper.Deserialize<Loan>(@"c:\temp\loanjson");
-            //DataRepository<Loan> 
+            IDictionary<int,Loan> loans = DataRepositoryHelper.Deserialize<Loan>(@"c:\temp\loanjsonfile.txt");
+            IDataRepository<Loan> repo = RepositoryFactory.Create<Loan>();
+            repo.SetData(loans);
             return true;
         }
     }

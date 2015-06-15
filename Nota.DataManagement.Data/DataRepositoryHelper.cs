@@ -11,19 +11,19 @@ namespace Nota.DataManagement.Data
 {
     public static class DataRepositoryHelper
     {
-        public static Dictionary<int, T> Deserialize<T>(string file) 
+        public static IDictionary<int, T> Deserialize<T>(string file) 
         {
-            Dictionary<int, T> dictionary;
+            IDictionary<int, T> dictionary;
             JsonSerializer serialiser = new JsonSerializer();
             using (StreamReader sr = new StreamReader(@file))
             using (JsonReader reader = new JsonTextReader(sr))
             {
-                dictionary = serialiser.Deserialize<Dictionary<int, T>>(reader);
+                dictionary = serialiser.Deserialize<IDictionary<int, T>>(reader);
             }
             return dictionary;
         }
 
-        public static bool Serialize<T>(Dictionary<int, T> dictionary, string file) where T:BaseData
+        public static bool Serialize<T>(IDictionary<int, T> dictionary, string file) where T:BaseData
         {
             try
             {

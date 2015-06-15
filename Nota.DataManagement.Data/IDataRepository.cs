@@ -15,5 +15,7 @@ namespace Nota.DataManagement.Data
         bool Update(T data);
         int GetLastestRevision();
         int Count();
+        IDictionary<int, T> GetData();
+        void SetData(IDictionary<int, T> data);
     }
 }

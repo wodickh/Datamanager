@@ -111,16 +111,16 @@ namespace DataManagementCenterTest
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            LoanRepository repository = new LoanRepository();
+            IDataRepository<Loan> repository = RepositoryFactory.Create<Loan>();
             for (int i= 0;i <1000000; i++) {
                 Loan loan = new Loan { Id = i, MemberId = i * 2, Notes = string.Format("Notes for loan with id: {0}", i), LibraryId = i * 1000, Path = "Loan" };
                 repository.Add(loan);
             }
-            repository.Serialize();
-            repository.Clear();
-            repository.Deserialize();
+            DataRepositoryHelper.Serialize<Loan>(repository.GetData(),@"c:\temp\loanjsonfile.txt");
+        //    repository.Clear();
+        //    repository.Deserialize();
             stopwatch.Stop();
-            int count = repository.Count;
+            int count = repository.Count();
         }
     }
 }

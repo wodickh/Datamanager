@@ -89,9 +89,17 @@ namespace Nota.DataManagement.Data
             return _nextRevision;
        }
 
-        public void SetData(Dictionary<int, T> dictionary)
+        public void SetData(IDictionary<int, T> dictionary)
         {
-            _datas = new ConcurrentDictionary<int, T>(dictionary);
+            if (dictionary != null)
+            {
+                _datas = new ConcurrentDictionary<int, T>(dictionary);
+            }
+        }
+
+        public IDictionary<int, T> GetData()
+        {
+            return _datas;
         }
     }
 }

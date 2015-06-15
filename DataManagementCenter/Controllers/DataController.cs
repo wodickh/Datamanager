@@ -9,7 +9,7 @@ using Nota.DataManagement.Data;
 
 namespace DataManagementCenter.Controllers
 {
-    public class DataController : ApiController
+    public class DataController<T> : ApiController where T:BaseData
     {
         /*
          * Api: 
@@ -21,21 +21,21 @@ namespace DataManagementCenter.Controllers
          * PUT {loan}/{id} - update 
          * DELETE {loan}/{id} - delete
          */
-        static readonly IDataRepository<Loan> repository = RepositoryFactory.Create<Loan>();
+        static readonly IDataRepository<T> repository = RepositoryFactory.Create<T>();
 
         
-        public IEnumerable<Loan> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            return repository.GetAll();
+            return repository.GetAll().ToList();
         }
 
-        public Loan GetById(int id) {
-            Loan loan = repository.Get(id);
-            if (loan == null)
+        public T GetById(int id) {
+            T data = repository.Get(id);
+            if (data == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return loan;
+            return data;
         }
 
         public HttpResponseMessage GetByRevision(string revision)
@@ -43,8 +43,9 @@ namespace DataManagementCenter.Controllers
             int id;
             if (int.TryParse(revision, out id))
             {
-                IEnumerable<Loan> loans = repository.GetAll().Where(l => l.Revision > int.Parse(revision));
-                  HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.OK, loans);
+                int revisionInt = int.Parse(revision);
+                IEnumerable<T> datas = repository.GetAll().Where(l => l.Revision > revisionInt).ToList();
+                  HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.OK, datas);
                   message.Headers.Add("revision", repository.GetLastestRevision().ToString());
                   return message;
             }
@@ -65,19 +66,19 @@ namespace DataManagementCenter.Controllers
             }            
         }
         
-        public HttpResponseMessage Post(Loan loan)
+        public HttpResponseMessage Post(T data)
         {
-            loan = repository.Add(loan);
-            var response = Request.CreateResponse<Loan>(HttpStatusCode.Created, loan);
-            string uri = Url.Link("DefaultApi", new { id = loan.Id });
+            data = repository.Add(data);
+            var response = Request.CreateResponse<T>(HttpStatusCode.Created, data);
+            string uri = Url.Link("DefaultApi", new { id = data.Id });
             response.Headers.Location = new Uri(uri);
             return response;
         }
 
-        public void Put(int id, Loan loan) 
+        public void Put(int id, T data) 
         {
-            loan.Id = id;
-            if (!repository.Update(loan))
+            data.Id = id;
+            if (!repository.Update(data))
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -85,19 +86,18 @@ namespace DataManagementCenter.Controllers
 
         public void Delete(int id)
         {
-            Loan loan = repository.Get(id);
-            if (loan == null)
+            T data = repository.Get(id);
+            if (data == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            repository.Remove(loan);
+            repository.Remove(data);
         }
     }
 
     #region Controllers
-    public class LoanController : DataController
-    {
-        
-    }
+    public class LoanController : DataController<Loan>   { }
+
+    public class ItemController : DataController<Item>  { }
 #endregion Controllers
 }
