@@ -95,18 +95,7 @@ namespace DataManagementCenterTest
 
         }
 
-        [TestMethod]
-        public void TestCreate100KOfLoans() {
-            LoanRepository repository = new LoanRepository();
-            for (int i = 0; i < 1000; i++)
-            {
-                Loan loan = new Loan { Id = i, MemberId = i * 2, Notes = string.Format("Notes for loan with id: {0}", i), LibraryId = i * 1000, Path = "Loan" };
-                repository.Add(loan);
-            }
-            repository.Serialize();
-        }
-
-        [TestMethod]
+       [TestMethod]
         public void TestCreate100KOfLoansSerialiseNDeserialize()
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -116,7 +105,7 @@ namespace DataManagementCenterTest
                 Loan loan = new Loan { Id = i, MemberId = i * 2, Notes = string.Format("Notes for loan with id: {0}", i), LibraryId = i * 1000, Path = "Loan" };
                 repository.Add(loan);
             }
-            DataRepositoryHelper.Serialize<Loan>(repository.GetData(),@"c:\temp\loanjsonfile.txt");
+            DataRepositoryHelper.Serialize<Loan>(repository.GetData(), @"c:\temp\loanjsonfile.txt");
         //    repository.Clear();
         //    repository.Deserialize();
             stopwatch.Stop();

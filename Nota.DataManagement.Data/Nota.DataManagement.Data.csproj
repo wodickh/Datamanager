@@ -47,8 +47,6 @@
     <Compile Include="DataRepositoryHelper.cs" />
     <Compile Include="IDataRepository.cs" />
     <Compile Include="RepositoryFactory.cs" />
-    <Compile Include="LoanRepository.cs" />
-    <Compile Include="ILoanRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

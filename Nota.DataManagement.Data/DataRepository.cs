@@ -17,7 +17,7 @@ namespace Nota.DataManagement.Data
         {
             return _datas.Count();            
         }
-
+        
         public void Clear()
         {
             _datas.Clear();

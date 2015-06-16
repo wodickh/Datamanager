@@ -99,5 +99,6 @@ namespace DataManagementCenter.Controllers
     public class LoanController : DataController<Loan>   { }
 
     public class ItemController : DataController<Item>  { }
-#endregion Controllers
+
+    #endregion Controllers
 }

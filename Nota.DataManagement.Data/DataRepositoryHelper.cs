@@ -28,7 +28,7 @@ namespace Nota.DataManagement.Data
             try
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.NullValueHandling = NullValueHandling.Ignore;
+                serializer.NullValueHandling = NullValueHandling.Include;
                 using (StreamWriter sw = new StreamWriter(@file))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {

@@ -9,6 +9,7 @@ namespace Nota.DataManagement.Model
     public class Item : BaseData
     {
         public string Title { get; set; }
+        
         public override void CreateTombstone()
         {
             throw new NotImplementedException();
