@@ -81,6 +81,7 @@ namespace Nota.DataManagement.Data
         private T MakeTombstone(int id)
         {
             T tombstone = Get(id);
+            tombstone.CreateTombstone();
             return tombstone;
         }
 
@@ -94,7 +95,7 @@ namespace Nota.DataManagement.Data
             if (dictionary != null)
             {
                 _datas = new ConcurrentDictionary<int, T>(dictionary);
-                _nextRevision = ++datas.Max(l => l.Value.Revision);
+                _nextRevision = _datas.Max(l => l.Value.Revision)+1;
             }
         }
 
