@@ -94,6 +94,7 @@ namespace Nota.DataManagement.Data
             if (dictionary != null)
             {
                 _datas = new ConcurrentDictionary<int, T>(dictionary);
+                _nextRevision = ++datas.Max(l => l.Value.Revision);
             }
         }
 

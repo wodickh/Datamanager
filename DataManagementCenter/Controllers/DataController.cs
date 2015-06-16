@@ -53,7 +53,7 @@ namespace DataManagementCenter.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-        }
+        }       
 
         public HttpResponseMessage Head(string revision)
         {
